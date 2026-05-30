@@ -1,0 +1,23 @@
+# ROCmark Configuration
+
+benchmark:
+  num_prompts: 100
+  max_tokens: 512
+  temperature: 0.0
+  warmup_requests: 5
+
+models:
+  - name: meta-llama/Meta-Llama-3-8B
+    frameworks: [vllm, sglang]
+    quantizations: [fp16, gptq, awq]
+
+  - name: mistralai/Mistral-7B-v0.3
+    frameworks: [vllm]
+    quantizations: [fp16, gptq]
+
+system:
+  rocm_smi_interval: 1.0
+  output_dir: ./reports
+  log_level: INFO
+  device: cuda
+  trust_remote_code: true
